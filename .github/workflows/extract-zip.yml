@@ -1,6 +1,7 @@
 name: Extract Zip and Commit
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - '**.zip'
