@@ -1,0 +1,28 @@
+name: Extract Zip and Commit
+
+on:
+  push:
+    paths:
+      - '**.zip'
+
+jobs:
+  extract-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Extract Zip
+        run: |
+          # Assuming your zip file is named "archive.zip"
+          unzip -o archive.zip
+          # Adjust the above line to extract the correct zip file
+
+      - name: Commit and Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Extracted contents of zip file"
+          git push
